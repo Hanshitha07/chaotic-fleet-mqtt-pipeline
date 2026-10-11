@@ -2,6 +2,10 @@ import json
 from validator import validate_payload
 from deduplicator import is_duplicate_message
 
+from config import EVENT_HUB_CONNECTION_STRING
+
+# Use EVENT_HUB_CONNECTION_STRING to initialize your Event Hub / Service Bus consumer client
+
 def process_telemetry_event(raw_event_body: str):
     """
     Core consumer function triggered by incoming stream.
