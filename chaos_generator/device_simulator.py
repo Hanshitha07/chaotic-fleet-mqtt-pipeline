@@ -7,7 +7,7 @@ import paho.mqtt.client as mqtt
 from chaos_injector import ChaosInjector
 
 class DeviceSimulator:
-    def __init__(self, device_id, broker_host="localhost", broker_port=1883, chaos_config=None):
+    def __init__(self, device_id, broker_host="broker.hivemq.com", broker_port=1883, chaos_config=None):
         self.device_id = device_id
         self.broker_host = broker_host
         self.broker_port = broker_port
@@ -15,10 +15,11 @@ class DeviceSimulator:
         self.seq_num = 0
 
     async def run(self):
-        client = mqtt.Client(client_id=f"sim_device_{self.device_id}")
+        client = mqtt.Client(client_id=f"sim_device_{self.device_id}_{uuid.uuid4().hex[:4]}")
         try:
             client.connect(self.broker_host, self.broker_port, 60)
             client.loop_start()
+            print(f"[{self.device_id}] Connected to MQTT broker at {self.broker_host}")
         except Exception as e:
             print(f"[{self.device_id}] Failed to connect to MQTT broker: {e}")
             return
