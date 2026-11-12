@@ -200,7 +200,6 @@ chaotic-fleet/
 └── README.md
 ```
 
-*Note: The structure above is representative. Adjust the file list to match the actual contents of your repository.*
 
 ---
 
